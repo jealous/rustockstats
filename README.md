@@ -1,5 +1,9 @@
 # rustockstats
 
+[![Build](https://github.com/jealous/rustockstats/actions/workflows/ci.yml/badge.svg)](https://github.com/jealous/rustockstats/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/jealous/rustockstats/branch/main/graph/badge.svg)](https://codecov.io/gh/jealous/rustockstats)
+[![Crates.io](https://img.shields.io/crates/v/rustockstats.svg)](https://crates.io/crates/rustockstats)
+
 A Rust crate that provides **stockstats-like** technical indicators on top of a Polars `DataFrame`.
 
 Indicators/derived columns are computed **lazily on-demand**: when you call `get("rsi")`, the column is created if missing and then returned.

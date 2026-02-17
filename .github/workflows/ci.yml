@@ -22,11 +22,21 @@ jobs:
           toolchain: stable
           components: clippy, rustfmt
 
-      - name: Cargo test
-        run: cargo test
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
 
       - name: Cargo clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
 
       - name: Cargo fmt
         run: cargo fmt --all -- --check
+
+      - name: Generate coverage report
+        run: cargo llvm-cov --workspace --all-features --lcov --output-path lcov.info
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./lcov.info
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
