@@ -2,7 +2,14 @@
 name = "rustockstats"
 version = "0.1.0"
 edition = "2024"
+description = "Stockstats-like technical indicators on top of Polars DataFrame."
 license = "BSD-3-Clause"
+readme = "README.md"
+repository = "https://github.com/jealous/rustockstats"
+homepage = "https://github.com/jealous/rustockstats"
+documentation = "https://docs.rs/rustockstats"
+keywords = ["stocks", "technical-analysis", "polars", "indicators"]
+categories = ["finance"]
 
 [dependencies]
 polars = { version = "0.51", features = ["fmt", "csv"] }
