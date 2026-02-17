@@ -233,6 +233,35 @@ fn test_must_have_positive_int() {
 }
 
 #[test]
+fn test_new_works_like_retype() {
+    let df = df![
+        "date" => vec![1_i64, 2],
+        "Open" => vec![10.0, 11.0],
+        "High" => vec![12.0, 13.0],
+        "Low" => vec![9.0, 10.0],
+        "Close" => vec![11.0, 12.0],
+        "Volume" => vec![100.0, 120.0],
+        "Amount" => vec![1000.0, 1200.0],
+        "custom" => vec![1.0, 2.0],
+    ]
+    .expect("df");
+
+    let stock_new = StockDataFrame::new(df.clone()).expect("new");
+    let stock_retype = StockDataFrame::retype(df).expect("retype");
+
+    let new_cols = colnames(&stock_new);
+    let retype_cols = colnames(&stock_retype);
+    assert_eq!(new_cols, retype_cols);
+    assert!(new_cols.contains(&"open".to_string()));
+    assert!(new_cols.contains(&"high".to_string()));
+    assert!(new_cols.contains(&"low".to_string()));
+    assert!(new_cols.contains(&"close".to_string()));
+    assert!(new_cols.contains(&"volume".to_string()));
+    assert!(new_cols.contains(&"amount".to_string()));
+    assert!(!new_cols.contains(&"Open".to_string()));
+}
+
+#[test]
 fn test_multiple_columns() {
     let stock = load_csv("tests/data/987654.csv");
     let sel = stock.df().select(["open", "close"]).expect("select");

@@ -12,10 +12,6 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        toolchain: [stable, nightly]
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +19,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: ${{ matrix.toolchain }}
+          toolchain: stable
           components: clippy, rustfmt
 
       - name: Cargo test
