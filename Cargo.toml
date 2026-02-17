@@ -1,0 +1,12 @@
+[package]
+name = "rustockstats"
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+
+[dependencies]
+polars = { version = "0.51", features = ["fmt", "csv"] }
+regex = "1.11"
+
+[dev-dependencies]
+approx = "0.5"
