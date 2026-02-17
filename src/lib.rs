@@ -108,6 +108,13 @@ pub enum ParsedColumnName {
 }
 
 impl StockDataFrame {
+    /// Create a [`StockDataFrame`] by normalizing common OHLCV column names.
+    ///
+    /// This is equivalent to [`StockDataFrame::retype`].
+    pub fn new(df: DataFrame) -> Result<Self> {
+        Self::retype(df)
+    }
+
     /// Normalize common OHLCV column names to lowercase and return a [`StockDataFrame`].
     ///
     /// Recognized names (case-insensitive): Open, High, Low, Close, Volume, Amount.
